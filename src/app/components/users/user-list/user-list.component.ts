@@ -1,6 +1,14 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
-import { MatTableDataSource, MatSort, MatPaginator } from "@angular/material";
+import {
+  MatTableDataSource,
+  MatSort,
+  MatPaginator,
+  MatDialog,
+  MatDialogConfig
+} from "@angular/material";
 import { UserService } from "../../../shared/user.service";
+import { UserComponent } from "../user/user.component";
+import { NotificationService } from "../../../shared/notification.service";
 
 @Component({
   selector: "user-list",
@@ -8,7 +16,11 @@ import { UserService } from "../../../shared/user.service";
   styleUrls: ["./user-list.component.css"]
 })
 export class UserListComponent implements OnInit {
-  constructor(private service: UserService) {}
+  constructor(
+    private service: UserService,
+    private notificationService: NotificationService,
+    private dialog: MatDialog
+  ) {}
   listData: MatTableDataSource<any>;
   displayedColumns: string[] = [
     "name",
@@ -34,13 +46,6 @@ export class UserListComponent implements OnInit {
       this.listData = new MatTableDataSource(array);
       this.listData.sort = this.sort;
       this.listData.paginator = this.paginator;
-      this.listData.filterPredicate = (data, filter) => {
-        return this.displayedColumns.some(ele => {
-          return (
-            ele != "actions" && data[ele].toLowerCase().indexOf(filter) != -1
-          );
-        });
-      };
     });
   }
 
@@ -51,5 +56,20 @@ export class UserListComponent implements OnInit {
 
   applyFilter() {
     this.listData.filter = this.searchKey.trim().toLowerCase();
+  }
+  onEdit(row) {
+    this.service.populateForm(row);
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = false;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "60%";
+    this.dialog.open(UserComponent, dialogConfig);
+  }
+
+  onDelete($key) {
+    if (confirm("Are you sure to delete this record ?")) {
+      this.service.deleteUser($key);
+      this.notificationService.warn("! Deleted successfully");
+    }
   }
 }

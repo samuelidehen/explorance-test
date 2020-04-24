@@ -12,6 +12,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AngularFireModule } from "angularfire2";
 import { AngularFireDatabaseModule } from "angularfire2/database";
 import { environment } from "./environments/environment";
+import { MatDialogRef } from "@angular/material";
 import { DatePipe } from "@angular/common";
 import { UserListComponent } from "./components/users/user-list/user-list.component";
 
@@ -33,7 +34,17 @@ import { UserListComponent } from "./components/users/user-list/user-list.compon
     UserComponent,
     UserListComponent
   ],
-  providers: [UserService, DatePipe],
-  bootstrap: [AppComponent]
+  providers: [
+    UserService,
+    DatePipe,
+    {
+      provide: MatDialogRef,
+      useValue: {
+        close: (dialogResult: any) => {}
+      }
+    }
+  ],
+  bootstrap: [AppComponent],
+  entryComponents: [UserComponent]
 })
 export class AppModule {}

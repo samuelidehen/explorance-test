@@ -60,4 +60,7 @@ export class UserService {
   deleteUser($key: string) {
     this.userList.remove($key);
   }
+  populateForm(user) {
+    this.form.setValue(user);
+  }
 }
