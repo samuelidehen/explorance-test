@@ -11,11 +11,20 @@ import { UserService } from "./shared/user.service";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AngularFireModule } from "angularfire2";
 import { AngularFireDatabaseModule } from "angularfire2/database";
-import { environment } from "./environments/environment";
 import { MatDialogRef } from "@angular/material";
 import { DatePipe } from "@angular/common";
 import { UserListComponent } from "./components/users/user-list/user-list.component";
-
+const firbaseConfig = {
+  firbaseConfig: {
+    apiKey: "AIzaSyCcTdEITJdh7bRtbExESU3IboGLjozYvgI",
+    authDomain: "explorance-form.firebaseapp.com",
+    databaseURL: "https://explorance-form.firebaseio.com",
+    projectId: "explorance-form",
+    storageBucket: "explorance-form.appspot.com",
+    messagingSenderId: "815802272792",
+    appId: "1:815802272792:web:4dca7dc5f2c0b86a3a876d"
+  }
+};
 @NgModule({
   imports: [
     BrowserModule,
@@ -25,7 +34,7 @@ import { UserListComponent } from "./components/users/user-list/user-list.compon
     NgbModule,
     MaterialModule,
     AngularFireDatabaseModule,
-    AngularFireModule.initializeApp(environment.firbaseConfig)
+    AngularFireModule.initializeApp(firbaseConfig.firbaseConfig)
   ],
   declarations: [
     AppComponent,
