@@ -1,8 +1,8 @@
-<form [formGroup]="service.form" class="normal-form">
+<form [formGroup]="service.form" class="normal-form" (submit)="onSubmit()">
   <mat-grid-list cols="2" rowHeight="300px">
     <mat-grid-tile>
       <div class="controls-container">
-        <input type="hidden" formControlName="id" />
+        <input type="hidden" formControlName="$key" />
         <mat-form-field>
           <input formControlName="name" matInput placeholder="Name*">
           <mat-error>This field is mandatory.</mat-error>
