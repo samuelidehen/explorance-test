@@ -1,0 +1,10 @@
+.container {
+  margin: 0 40px;
+}
+
+.fill-space {
+  flex: 1 1 auto;
+}
+.button-row button {
+  margin: 5px;
+}
