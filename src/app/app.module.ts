@@ -38,9 +38,7 @@ import { UserListComponent } from "./components/users/user-list/user-list.compon
     DatePipe,
     {
       provide: MatDialogRef,
-      useValue: {
-        close: (dialogResult: any) => {}
-      }
+      useValue: {}
     }
   ],
   bootstrap: [AppComponent],
