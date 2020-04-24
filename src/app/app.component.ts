@@ -1,6 +1,5 @@
 //our root app component
-import { Component, NgModule, VERSION, AfterViewInit } from "@angular/core";
-import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { Component } from "@angular/core";
 
 @Component({
   selector: "my-app",

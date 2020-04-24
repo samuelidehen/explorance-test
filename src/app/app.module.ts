@@ -29,7 +29,6 @@ import { UserListComponent } from "./components/users/user-list/user-list.compon
   ],
   declarations: [
     AppComponent,
-
     UsersComponent,
     UserComponent,
     UserListComponent
